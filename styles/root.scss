@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&family=Montserrat:wght@400;500;700&display=swap');
+
+$color-grey: #CFDBD5;
+$color-black: #000;
+$color-red: #ED1B49;
+$color-light-red: #F89797;
+$color-light-gray: #F1F5F5;
+$color-smoke-white: #5D5D5B;
+$color-white: #FFF;
+
+$font-primary: 'Inter', sans-serif;
+$font-second: 'Montserrat', sans-serif;
+$font-weight-default: 400;
+$font-weight-title: 700;
+
+$border-size: 10px;
+
+
+.text-i-title {
+    font-family: $font-primary;
+    font-weight: $font-weight-title;
+    font-size: 14px;
+}
+
+.text-m-title {
+    font-family: $font-second;
+    font-weight: $font-weight-title;
+    font-size: 16px;
+}
+
+.text-i {
+    font-family: $font-primary;
+    font-weight: $font-weight-default;
+    font-size: 12px;
+}
+
+.text-m {
+    font-family: $font-second;
+    font-weight: $font-weight-default;
+    font-size: 12px;
+}
+
+
+* {
+    padding: 0px;
+	margin: 0px;
+	outline: none;
+    font-family: 'Open Sans', sans-serif;
+    border: none;
+    box-shadow: none;
+}
+
+.btn-primary {
+    border-radius: 10px;
+    width: 300px;
+    background-color: $color-red;
+    font-family: $font-primary;
+    font-size: 14px;
+    font-weight: 700;
+    color: $color-white;
+    padding: 14px 12px;
+}
+
+.btn-second  {
+    border: 1px solid $color-red;
+    border-radius: 10px;
+    width: 300px;
+    background-color: $color-light-gray;
+    font-family: $font-primary;
+    font-size: 14px;
+    font-weight: 700;
+    color: $color-red;
+    padding: 14px 12px;
+}
+
+hr {
+    background-color: $color-light-gray;
+}

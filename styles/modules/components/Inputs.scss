@@ -1,0 +1,21 @@
+form {
+    border: 1px solid $color-grey;
+    border-radius: $border-size;
+}
+
+input {
+    border: 1px solid $color-grey;
+    border-radius: $border-size;
+    padding: 12px 20px;
+}
+
+.select {
+    border: 1px solid $color-grey;
+    border-radius: $border-size;
+    padding: 12px 20px;
+
+    select {
+        color: $color-smoke-white;
+        background-color: $color-white;
+    }
+}

@@ -1,0 +1,19 @@
+.simple-card {
+    cursor: pointer;
+    padding: 12px 14px;
+    border-radius: $border-size;
+    width: 300px;
+    border: 1px solid #CFDBD5;
+
+
+    .icon-content {
+        width: 48px;
+        height: 48px;
+        background-color: #EBF0F0;
+        border-radius: $border-size;
+    }
+
+    span {
+        color: #5D5D5B;
+    }
+}

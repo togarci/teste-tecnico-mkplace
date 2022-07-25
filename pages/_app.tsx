@@ -1,5 +1,7 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import '../styles/main.scss';
+import 'bootstrap/dist/css/bootstrap.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
