@@ -3,8 +3,14 @@ import Header from "../components/Header";
 import SimpleCard from "../components/SimpleCard";
 import { CaretRight } from "phosphor-react";
 import Upload from "../components/Upload";
+import { useContext } from "react";
+import { ContextApp } from "../ContextApp";
 
 const createList: NextPage = () => {
+    const { list } = useContext(ContextApp)
+    console.log(list);
+    
+
     return (
         <div id="createList" className="d-flex flex-column h-100 p-5">
             <Header
@@ -13,7 +19,12 @@ const createList: NextPage = () => {
 
             <div className="d-flex mt-5">
                 <aside>
-                    <SimpleCard/>
+                    <SimpleCard
+						id={312}
+						qtdCategoria={3}
+						qtdItens={32}
+                        event={() => {}}
+                    />
                     <button className="btn-second mt-3">
                         Concluir lista
                     </button>

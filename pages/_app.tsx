@@ -2,6 +2,8 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import '../styles/main.scss';
 import 'bootstrap/dist/css/bootstrap.css'
+import { AppProvider } from '../ContextApp';
+
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -10,7 +12,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Teste Técnico Frontend - MKPLACE</title>
         <link rel="icon" href="/favicon-mkplace.ico" />
       </Head>
-      <Component {...pageProps} />
+
+      <AppProvider>
+        <Component {...pageProps} />
+      </AppProvider>
     </>
   );
 }
