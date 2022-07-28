@@ -17,62 +17,66 @@ $border-size: 10px;
 
 
 .text-i-title {
-    font-family: $font-primary;
-    font-weight: $font-weight-title;
-    font-size: 14px;
+	font-family: $font-primary;
+	font-weight: $font-weight-title;
+	font-size: 14px;
 }
 
 .text-m-title {
-    font-family: $font-second;
-    font-weight: $font-weight-title;
-    font-size: 16px;
+	font-family: $font-second;
+	font-weight: $font-weight-title;
+	font-size: 16px;
 }
 
 .text-i {
-    font-family: $font-primary;
-    font-weight: $font-weight-default;
-    font-size: 12px;
+	font-family: $font-primary;
+	font-weight: $font-weight-default;
+	font-size: 12px;
 }
 
 .text-m {
-    font-family: $font-second;
-    font-weight: $font-weight-default;
-    font-size: 12px;
+	font-family: $font-second;
+	font-weight: $font-weight-default;
+	font-size: 12px;
 }
 
 
 * {
-    padding: 0px;
+	padding: 0px;
 	margin: 0px;
 	outline: none;
-    font-family: 'Open Sans', sans-serif;
-    border: none;
-    box-shadow: none;
+	font-family: 'Open Sans', sans-serif;
+	border: none;
+	box-shadow: none;
 }
 
 .btn-primary {
-    border-radius: 10px;
-    width: 300px;
-    background-color: $color-red;
-    font-family: $font-primary;
-    font-size: 14px;
-    font-weight: 700;
-    color: $color-white;
-    padding: 14px 12px;
+	border-radius: 10px;
+	width: 300px;
+	background-color: $color-red;
+	font-family: $font-primary;
+	font-size: 14px;
+	font-weight: 700;
+	color: $color-white;
+	padding: 14px 12px;
 }
 
 .btn-second  {
-    border: 1px solid $color-red;
-    border-radius: 10px;
-    width: 300px;
-    background-color: $color-light-gray;
-    font-family: $font-primary;
-    font-size: 14px;
-    font-weight: 700;
-    color: $color-red;
-    padding: 14px 12px;
+	border: 1px solid $color-red;
+	border-radius: 10px;
+	width: 300px;
+	background-color: $color-light-gray;
+	font-family: $font-primary;
+	font-size: 14px;
+	font-weight: 700;
+	color: $color-red;
+	padding: 14px 12px;
 }
 
 hr {
-    background-color: $color-light-gray;
+	background-color: $color-light-gray;
+}
+
+.cursor-pointer {
+	cursor: pointer;
 }

@@ -1,19 +1,19 @@
 .card-add {
-    cursor: pointer;
-    padding: 12px 14px;
-    border-radius: $border-size;
-    width: 300px;
-    border: 1px solid $color-red;
-    background: $color-light-gray;
+	cursor: pointer;
+	padding: 12px 14px;
+	border-radius: $border-size;
+	width: 300px;
+	border: 1px solid $color-red;
+	background: $color-light-gray;
 
-    .icon-content {
-        width: 48px;
-        height: 48px;
-        background-color: $color-light-red;
-        border-radius: $border-size;
-    }
+	.icon-content {
+		width: 48px;
+		height: 48px;
+		background-color: $color-light-red;
+		border-radius: $border-size;
+	}
 
-    span {
-        color: $color-red;
-    }
+	span {
+		color: $color-red;
+	}
 }

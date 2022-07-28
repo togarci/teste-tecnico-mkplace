@@ -1,41 +1,35 @@
-import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { lista, childrenComponent } from "./Types";
 
-interface ContextAppProps {
-    children: ReactNode
-}
 
 const initialValue = {
-    list: {},
-    setList: () => {}
+	list: {
+		id: 0,
+		products: [],
+		qtdeCategoria: 0,
+		qtdeItens: 0
+	},
+	setList: () => {},
+	img: null,
+	setImg: () => {}
 }
 
-
-interface product {
-    categoryTitle: String,
-    name: String,
-    quantity: Number,
-    type: String,
-    price: Number
-}
-interface lista {
-    id: Number,
-    products: Array<product>
-    qtdeCategoria: Number,
-    qtdeItens: Number
-}
-
-type typeProp = {
-    list: Object;
-    setList: Dispatch<SetStateAction<never[]>>;
+interface typeProp {
+	list: lista;
+	setList: Dispatch<SetStateAction<{ id: number; products: never[]; qtdeCategoria: number; qtdeItens: number; }>>;
+	img: File | null,
+	setImg: Dispatch<SetStateAction<null>> | Dispatch<SetStateAction<File>>
 }
 
 export const ContextApp = React.createContext<typeProp>(initialValue);
 
-export const AppProvider = ({ children }: ContextAppProps) => {
-    const [list, setList] = useState(initialValue.list);
-    return (
-        <ContextApp.Provider value={{ list, setList }}>
-            { children }
-        </ContextApp.Provider>
-    )
-}; 
+export const AppProvider = ({ children }: childrenComponent) => {
+	const [list, setList] = useState(initialValue.list);
+	const [img, setImg] = useState(initialValue.img);
+
+	return (
+		<ContextApp.Provider value={{ list, setList, img, setImg }}>
+			{ children }
+		</ContextApp.Provider>
+	)
+};

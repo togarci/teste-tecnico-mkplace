@@ -1,21 +1,25 @@
-form {
-    border: 1px solid $color-grey;
-    border-radius: $border-size;
+.form {
+	border: 1px solid $color-grey;
+	border-radius: $border-size;
 }
 
-input {
-    border: 1px solid $color-grey;
-    border-radius: $border-size;
-    padding: 12px 20px;
+.input {
+	border: 1px solid $color-grey;
+	border-radius: $border-size;
+	padding: 12px 20px;
+}
+
+.input-qtde {
+	text-align: center;
 }
 
 .select {
-    border: 1px solid $color-grey;
-    border-radius: $border-size;
-    padding: 12px 20px;
+	border: 1px solid $color-grey;
+	border-radius: $border-size;
+	padding: 12px 20px;
 
-    select {
-        color: $color-smoke-white;
-        background-color: $color-white;
-    }
+	select {
+		color: $color-smoke-white;
+		background-color: $color-white;
+	}
 }
