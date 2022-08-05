@@ -3,6 +3,7 @@ import Head from "next/head";
 import '../styles/main.scss';
 import 'bootstrap/dist/css/bootstrap.css'
 import { AppProvider } from '../ContextApp';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function MyApp({ Component, pageProps }: AppProps) {

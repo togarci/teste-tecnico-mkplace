@@ -17,7 +17,7 @@ export interface productList {
     quantity: Number,
     type: String,
     price: Number | String,
-    img: string | ArrayBuffer | null
+    imageUrl: string | ArrayBuffer | null
 }
 
 export interface lista {

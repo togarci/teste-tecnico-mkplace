@@ -1,20 +1,25 @@
 import { CaretRight, Minus, Plus, X } from "phosphor-react";
 import { useContext, useEffect, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 import { categoryService } from '../services/categoryService';
 import { productService } from '../services/productService';
+import { listService } from "../services/listService";
+import { productList } from "../Types";
+import { ContextApp } from "../ContextApp";
+import { useRouter } from "next/router";
 
 import type { NextPage } from "next";
 
 import Header from "../components/Header";
 import SimpleCard from "../components/SimpleCard";
 import Upload from "../components/Upload";
-import { productList } from "../Types";
-import { ContextApp } from "../ContextApp";
 
 const serviceCategory = new categoryService();
 const serviceProduct = new productService();
+const serviceList = new listService();
 
 const createList: NextPage = () => {
+	const router = useRouter();
 	const [newList, setNewList] = useState({
 		id: 0,
 		products: new Array<productList>(),
@@ -24,7 +29,7 @@ const createList: NextPage = () => {
 	const [categoryTitle, setCategoryTitle] = useState(String);
 	const [subCategory, setSubCategory] = useState(String);
 	const [name, setName] = useState(String);
-	const [type, setType] = useState(String);
+	const [type, setType] = useState('unit');
 	const [price, setPrice]  = useState(String);
 	const [quantity, setQuantity] = useState(1);
 	const { file, setFile } = useContext(ContextApp);
@@ -71,7 +76,7 @@ const createList: NextPage = () => {
 			'type': type,
 			'price': price,
 			'quantity': quantity,
-			'img': file
+			'imageUrl': file
 		});
 
 		const arrayCategorys = getQtdeCategorys(arrayProducts);
@@ -90,6 +95,35 @@ const createList: NextPage = () => {
 
 		let dataForm = {...newList, products: arrayProducts, qtdeCategoria: arrayCategorys.length};
 		setNewList(dataForm);
+	}
+
+	const saveList = () => {
+		const data = { products: newList.products };
+		serviceList.postList(data).then(response => {
+			clearForm();
+			toast.success('Salvo com sucesso !', {
+				position: "bottom-center",
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
+				
+			router.push('/');
+		
+		}).catch(() => {
+			toast.error('Ocorreu algo de errado ! :(', {
+				position: "bottom-center",
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
+		})
 	}
 
 	useEffect(() => {
@@ -113,9 +147,9 @@ const createList: NextPage = () => {
 						listItens={newList.products.map((elem, index) => {
 							return (
 								<div className="col-12" key={`item-${index}`}>
-									<hr className='mt-2 mb-2'/>
+									<hr className='mt-3 mb-3'/>
 									<div className="card-item d-flex align-items-center justify-content-between col-12">
-										<img src={`${elem.img}`} />
+										<img src={`${elem.imageUrl}`} />
 										<b className='text-i-title col-5'>{elem.name}</b>
 										<span className='text-i'>{`${elem.price} / Un`}</span>
 										<X onClick={() => removeItem(index)} color="red" size={20} weight="bold" />
@@ -125,7 +159,7 @@ const createList: NextPage = () => {
 						})}
 					/>
 					{ newList.products.length > 0 &&
-						<button className="btn-second mt-3">
+						<button onClick={() => saveList()} className="btn-second mt-3">
 							Concluir lista
 						</button>
 					}
@@ -175,7 +209,7 @@ const createList: NextPage = () => {
 							<label className="text-i">Tipo</label>
 							<div className="select mt-2">
 								<select name="categoria" className="col-12" value={type} onChange={evt => setType(evt.target.value)}>
-									<option value="unit">Unidade</option>
+									<option selected value="unit">Unidade</option>
 									<option value="kg">Kilo</option>
 								</select>
 							</div>
@@ -220,6 +254,7 @@ const createList: NextPage = () => {
 					<button onClick={addItens} className="btn-primary">Adicionar Item</button>
 				</div>
 			</div>
+			<ToastContainer />
 		</div>
 	)
 }
