@@ -73,6 +73,12 @@ $border-size: 10px;
 	padding: 14px 12px;
 }
 
+.btn-second:hover {
+	background-color: $color-red;
+	color: $color-white;
+	transition-duration: 0.6s;
+}
+
 hr {
 	background-color: $color-light-gray;
 }

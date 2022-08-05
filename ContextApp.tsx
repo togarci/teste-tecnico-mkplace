@@ -10,25 +10,25 @@ const initialValue = {
 		qtdeItens: 0
 	},
 	setList: () => {},
-	img: null,
-	setImg: () => {}
+	file: null,
+	setFile: () => {}
 }
 
 interface typeProp {
 	list: lista;
-	setList: Dispatch<SetStateAction<{ id: number; products: never[]; qtdeCategoria: number; qtdeItens: number; }>>;
-	img: File | null,
-	setImg: Dispatch<SetStateAction<null>> | Dispatch<SetStateAction<File>>
+	setList: (lista: lista) => void;
+	file: string | null | ArrayBuffer;
+	setFile: (value: null | ArrayBuffer | string) => void;
 }
 
 export const ContextApp = React.createContext<typeProp>(initialValue);
 
 export const AppProvider = ({ children }: childrenComponent) => {
-	const [list, setList] = useState(initialValue.list);
-	const [img, setImg] = useState(initialValue.img);
+	const [list, setList] = useState<lista>(initialValue.list);
+	const [file, setFile] = useState<null | string | ArrayBuffer>(initialValue.file);
 
 	return (
-		<ContextApp.Provider value={{ list, setList, img, setImg }}>
+		<ContextApp.Provider value={{ list, setList, file, setFile }}>
 			{ children }
 		</ContextApp.Provider>
 	)

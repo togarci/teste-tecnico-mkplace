@@ -62,6 +62,7 @@ const Home: NextPage = () => {
 							qtdCategoria={elem.qtdeCategoria}
 							qtdItens={elem.qtdeItens}
 							event={haddleEdit}
+							listItens={undefined}
 						/>
 					)
 

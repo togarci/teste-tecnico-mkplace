@@ -17,4 +17,23 @@
 	span {
 		color: #5D5D5B;
 	}
+
+	hr {
+		background-color: $color-smoke-white;
+		color: $color-smoke-white;
+	}
+	.card-item {
+		img {
+			width: 35px;
+			height: 35px;
+
+		}
+		b {
+			font-size: 14px;
+			text-align: start;
+		}
+		span {
+			font-size: 12px;
+		}
+	}
 }

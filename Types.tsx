@@ -11,6 +11,14 @@ export interface product {
     type: String,
     price: Number | String
 }
+export interface productList {
+    categoryTitle: String,
+    name: String,
+    quantity: Number,
+    type: String,
+    price: Number | String,
+    img: string | ArrayBuffer | null
+}
 
 export interface lista {
     id: number,

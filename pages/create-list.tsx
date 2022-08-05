@@ -1,5 +1,5 @@
-import { CaretRight, Minus, Plus } from "phosphor-react";
-import { useEffect, useState } from "react";
+import { CaretRight, Minus, Plus, X } from "phosphor-react";
+import { useContext, useEffect, useState } from "react";
 import { categoryService } from '../services/categoryService';
 import { productService } from '../services/productService';
 
@@ -8,7 +8,8 @@ import type { NextPage } from "next";
 import Header from "../components/Header";
 import SimpleCard from "../components/SimpleCard";
 import Upload from "../components/Upload";
-import { product } from "../Types";
+import { productList } from "../Types";
+import { ContextApp } from "../ContextApp";
 
 const serviceCategory = new categoryService();
 const serviceProduct = new productService();
@@ -16,7 +17,7 @@ const serviceProduct = new productService();
 const createList: NextPage = () => {
 	const [newList, setNewList] = useState({
 		id: 0,
-		products: new Array<product>(),
+		products: new Array<productList>(),
 		qtdeCategoria: 0,
 	});
 
@@ -26,6 +27,7 @@ const createList: NextPage = () => {
 	const [type, setType] = useState(String);
 	const [price, setPrice]  = useState(String);
 	const [quantity, setQuantity] = useState(1);
+	const { file, setFile } = useContext(ContextApp);
 
 	const [listCategory, setListCategory] = useState(new Array());
 	const [listSubCategory, setListSubCategory] = useState(new Array());
@@ -51,6 +53,14 @@ const createList: NextPage = () => {
 		setType('');
 		setPrice('');
 		setQuantity(1);
+		setFile(null);
+	}
+
+	const getQtdeCategorys = (listProducts: Array<productList>) => {
+		let arrayCategorys = new Array();
+		listProducts.forEach(e => { if (!arrayCategorys.includes(e.categoryTitle)) arrayCategorys.push(e.categoryTitle) });
+
+		return arrayCategorys;
 	}
 
 	const addItens = () => {
@@ -61,20 +71,30 @@ const createList: NextPage = () => {
 			'type': type,
 			'price': price,
 			'quantity': quantity,
+			'img': file
 		});
 
-		let arrayCategorys = new Array();
-		arrayProducts.forEach(e => { if (!arrayCategorys.includes(e.categoryTitle)) arrayCategorys.push(e.categoryTitle) });
+		const arrayCategorys = getQtdeCategorys(arrayProducts);
 
 		let dataForm = {...newList, products: arrayProducts, qtdeCategoria: arrayCategorys.length};
+
 		setNewList(dataForm);
 
 		clearForm();
 	}
 
+	const removeItem = (idx: number) => {
+		let arrayProducts = newList.products;
+		arrayProducts = arrayProducts.filter((elem, index) => idx !== index);
+		const arrayCategorys = getQtdeCategorys(arrayProducts);
+
+		let dataForm = {...newList, products: arrayProducts, qtdeCategoria: arrayCategorys.length};
+		setNewList(dataForm);
+	}
+
 	useEffect(() => {
 		getAllSelects();
-	}, [])
+	}, []);
 
 	return (
 		<div id="createList" className="d-flex flex-column h-100 p-5">
@@ -90,10 +110,25 @@ const createList: NextPage = () => {
 						qtdCategoria={newList.qtdeCategoria}
 						qtdItens={newList.products.length}
 						event={() => {}}
+						listItens={newList.products.map((elem, index) => {
+							return (
+								<div className="col-12" key={`item-${index}`}>
+									<hr className='mt-2 mb-2'/>
+									<div className="card-item d-flex align-items-center justify-content-between col-12">
+										<img src={`${elem.img}`} />
+										<b className='text-i-title col-5'>{elem.name}</b>
+										<span className='text-i'>{`${elem.price} / Un`}</span>
+										<X onClick={() => removeItem(index)} color="red" size={20} weight="bold" />
+									</div>
+								</div>
+							)
+						})}
 					/>
-					<button className="btn-second mt-3">
-						Concluir lista
-					</button>
+					{ newList.products.length > 0 &&
+						<button className="btn-second mt-3">
+							Concluir lista
+						</button>
+					}
 				</aside>
 
 				<div className="p-2 mt-3">
@@ -154,6 +189,12 @@ const createList: NextPage = () => {
 								placeholder="R$"
 								value={price}
 								onChange={evt => setPrice(evt.target.value)}
+								onBlur={() => {
+									let vl = 'R$ ' + Number(price.replace(',', '.')).toFixed(2);
+									vl = vl.replace('.', ',');
+
+									setPrice(vl)
+								}}
 							/>
 						</div>
 
@@ -161,7 +202,7 @@ const createList: NextPage = () => {
 							<label className="text-i">Quantidade</label>
 
 							<div className="d-flex col-12 mt-2 input justify-content-between">
-								<Minus className="cursor-pointer" size={25} weight="bold" onClick={ () => setQuantity(quantity - 1)} />
+								<Minus className="cursor-pointer" size={25} weight="bold" onClick={ () => { if (quantity > 1) setQuantity(quantity - 1)} } />
 								<input className="col-3 input-qtde" type="text" value={quantity} onChange={evt => setQuantity(Number(evt.target.value))} />
 								<Plus className="cursor-pointer" size={25} weight="bold" onClick={ () => setQuantity(quantity + 1) } />
 							</div>
@@ -169,7 +210,9 @@ const createList: NextPage = () => {
 					</div>
 
 					<div className="mt-4">
-						<Upload />
+						<Upload
+							accept=".png,.jpg,.jpeg"
+						/>
 					</div>
 
 					<hr />
