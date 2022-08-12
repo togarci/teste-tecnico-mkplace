@@ -4,7 +4,6 @@ import { ArrowLeft } from 'phosphor-react';
 
 interface prop {
 	routeDescription: String,
-	backRoute: String
 }
 
 export default function Header(props: prop) {
@@ -17,7 +16,7 @@ export default function Header(props: prop) {
 				height={80}
 			/>
 
-			<Link href={`${props.backRoute}`}>
+			<Link href={'/'}>
 				<ArrowLeft className="ms-3 me-2 cursor-pointer" size={32} />
 			</Link>
 

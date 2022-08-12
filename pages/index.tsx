@@ -38,7 +38,10 @@ const Home: NextPage = () => {
 	const haddleEdit = (id: number) => {
 		let lista = dataLista.find(elem => elem.id === id);
 		setList(lista);
-		Router.push('/update-list');
+		Router.push({
+			pathname: '/update-list',
+			query: { listId: lista.id }
+		});
 	}
 
 	return (
@@ -56,14 +59,17 @@ const Home: NextPage = () => {
 			{
 				list &&
 					dataLista.map(elem =>
-						<SimpleCard
-							key={`simpleCard-${elem.id}`}
-							id={elem.id}
-							qtdCategoria={elem.qtdeCategoria}
-							qtdItens={elem.qtdeItens}
-							event={haddleEdit}
-							listItens={undefined}
-						/>
+						<div className="mt-2">
+							<SimpleCard
+								key={`simpleCard-${elem.id}`}
+								id={elem.id}
+								qtdCategoria={elem.qtdeCategoria}
+								qtdItens={elem.qtdeItens}
+								event={haddleEdit}
+								listItens={undefined}
+								total={undefined}
+							/>
+						</div>
 					)
 
 			}

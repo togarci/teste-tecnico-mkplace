@@ -55,7 +55,7 @@ const createList: NextPage = () => {
 		setCategoryTitle('');
 		setSubCategory('');
 		setName('');
-		setType('');
+		setType('unit');
 		setPrice('');
 		setQuantity(1);
 		setFile(null);
@@ -134,7 +134,6 @@ const createList: NextPage = () => {
 		<div id="createList" className="d-flex flex-column h-100 p-5">
 			<Header
 				routeDescription="Criando Lista de Compras"
-				backRoute={'/'}
 			/>
 
 			<div className="d-flex mt-5">
@@ -151,12 +150,13 @@ const createList: NextPage = () => {
 									<div className="card-item d-flex align-items-center justify-content-between col-12">
 										<img src={`${elem.imageUrl}`} />
 										<b className='text-i-title col-5'>{elem.name}</b>
-										<span className='text-i'>{`${elem.price} / Un`}</span>
+										<span className='text-i'>{`${elem.price} / ${elem.type === 'Unit' ? 'Un' : 'Kg'}`}</span>
 										<X onClick={() => removeItem(index)} color="red" size={20} weight="bold" />
 									</div>
 								</div>
 							)
 						})}
+						total={undefined}
 					/>
 					{ newList.products.length > 0 &&
 						<button onClick={() => saveList()} className="btn-second mt-3">

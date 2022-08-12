@@ -7,6 +7,7 @@ interface prop {
 	qtdItens: Number,
 	event: (id: number) => void | undefined
 	listItens: ReactNode | undefined
+	total: string | undefined
 }
 
 export default function SimpleCard(props: prop) {
@@ -29,6 +30,16 @@ export default function SimpleCard(props: prop) {
 			</div>
 			
 			{ props.listItens && props.listItens }
+
+			{ props.total && 
+
+				<div className="d-flex justify-content-between mt-3 col-12">
+					<b className='text-i-title'>Total do carrinho</b>
+					<b className="text-i-title">{ `R$${String(props.total).replace('.', ',')}` }</b>
+				</div>
+			
+			
+			}
 		</button>
 	)
 }
